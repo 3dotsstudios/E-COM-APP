@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -30,6 +32,7 @@ public class CartActivity extends AppCompatActivity {
     private ScrollView scrollView;
     private ImageView backBtn, imageViewEditAddress;
     private Spinner paymentMethodSpinner;
+    private GestureDetector gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,19 @@ public class CartActivity extends AppCompatActivity {
         initList();
         calculateCart();
         setupEditAddress();
+
+        // Initialize GestureDetector for swipe gesture
+        gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                if (e2.getX() > e1.getX()) {
+                    // Detects a left-to-right swipe
+                    finish(); // Finish activity to go back
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void setupPaymentMethodSpinner() {
@@ -111,7 +127,8 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void setVariable() {
-        backBtn.setOnClickListener(v -> finish());
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(v -> finish()); // Listener for the back button
     }
 
     private void initView() {
@@ -121,7 +138,6 @@ public class CartActivity extends AppCompatActivity {
         totalTxt = findViewById(R.id.totalTxt);
         recyclerView = findViewById(R.id.view3);
         scrollView = findViewById(R.id.scrollView2);
-        backBtn = findViewById(R.id.backBtn);
         emptyTxt = findViewById(R.id.emptyTxt);
         paymentMethodSpinner = findViewById(R.id.paymentMethodSpinner);
         editTextDeliveryAddress = findViewById(R.id.editTextDeliveryAddress);
@@ -141,5 +157,11 @@ public class CartActivity extends AppCompatActivity {
         String address = editTextDeliveryAddress.getText().toString();
         // Save the address to your database or preferences
         // Show confirmation message if needed
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        // Pass all touch events to the GestureDetector
+        return gestureDetector.onTouchEvent(event) || super.onTouchEvent(event);
     }
 }

@@ -42,7 +42,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="2dp"
-                    app:srcCompat="@drawable/arrow" />
+                    app:srcCompat="@drawable/arrow"
+                    android:onClick="onBackClicked" />
 
                 <TextView
                     android:id="@+id/textView11"
@@ -221,8 +222,8 @@
 
                 <EditText
                     android:id="@+id/editTextDeliveryAddress"
-                    android:layout_width="386dp"
-                    android:layout_height="50dp"
+                    android:layout_width="343dp"
+                    android:layout_height="54dp"
                     android:background="@drawable/edittext_no_underline"
                     android:ems="10"
                     android:hint="Enter your address"

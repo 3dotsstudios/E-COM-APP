@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="162dp"
+        android:background="@drawable/grey_background"
+        android:padding="12dp"
+        tools:layout_editor_absoluteX="12dp"
+        tools:layout_editor_absoluteY="405dp">
+
+
+        <ImageView
+            android:id="@+id/imageViewEditAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/edit_address"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextDeliveryAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/editTextDeliveryAddress" />
+
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@color/grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <EditText
+        android:id="@+id/editTextDeliveryAddress"
+        android:layout_width="343dp"
+        android:layout_height="54dp"
+        android:background="@drawable/edittext_no_underline"
+        android:ems="10"
+        android:hint="Enter your address"
+        android:inputType="textPostalAddress"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.184" />
+
+    <EditText
+        android:id="@+id/editTextDeliveryAddress"
+        android:layout_width="343dp"
+        android:layout_height="54dp"
+        android:background="@drawable/edittext_no_underline"
+        android:ems="10"
+        android:hint="Enter your address"
+        android:inputType="textPostalAddress"
+        tools:layout_editor_absoluteX="12dp"
+        tools:layout_editor_absoluteY="322dp" />
+
+    <Spinner
+        android:id="@+id/paymentMethodSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="640dp" />
+
+    <TextView
+        android:id="@+id/textView26"
+        style="@style/textStyleBold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Payment Method"
+        tools:layout_editor_absoluteX="19dp"
+        tools:layout_editor_absoluteY="609dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
