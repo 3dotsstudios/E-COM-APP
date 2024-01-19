@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">project144.2</string>
+
+    <string-array name="payment_methods_array">
+        <item>Credit Card</item>
+        <item>Debit Card</item>
+        <item>PayPal</item>
+        <item>Cash on Delivery</item>
+        <!-- Add more payment methods as needed -->
+    </string-array>
+    <string name="edit_address">Edit Address</string>
+
+
+</resources>
