@@ -5,80 +5,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="162dp"
-        android:background="@drawable/grey_background"
-        android:padding="12dp"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="405dp">
-
-
-        <ImageView
-            android:id="@+id/imageViewEditAddress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:contentDescription="@string/edit_address"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextDeliveryAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/editTextDeliveryAddress" />
-
-
-        <View
-            android:id="@+id/view5"
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:background="@color/grey"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <EditText
-        android:id="@+id/editTextDeliveryAddress"
-        android:layout_width="343dp"
-        android:layout_height="54dp"
-        android:background="@drawable/edittext_no_underline"
-        android:ems="10"
-        android:hint="Enter your address"
-        android:inputType="textPostalAddress"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.184" />
-
-    <EditText
-        android:id="@+id/editTextDeliveryAddress"
-        android:layout_width="343dp"
-        android:layout_height="54dp"
-        android:background="@drawable/edittext_no_underline"
-        android:ems="10"
-        android:hint="Enter your address"
-        android:inputType="textPostalAddress"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="322dp" />
-
-    <Spinner
-        android:id="@+id/paymentMethodSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="640dp" />
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="374dp"
+        android:layout_height="295dp"
+        app:srcCompat="@drawable/grey_background"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="83dp" />
 
     <TextView
-        android:id="@+id/textView26"
-        style="@style/textStyleBold"
+        android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Payment Method"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="609dp" />
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Payment Details"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="113dp"
+        tools:layout_editor_absoluteY="31dp" />
+
+    <ImageView
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onBackClicked"
+        android:padding="2dp"
+        app:srcCompat="@drawable/arrow"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="25dp" />
+
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit Payment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="626dp" />
+
+
+    <!-- Add a submit button -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
