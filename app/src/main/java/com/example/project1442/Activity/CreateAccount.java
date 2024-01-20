@@ -12,11 +12,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.project1442.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.example.project1442.R;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CreateAccount extends AppCompatActivity {
 
@@ -37,7 +42,7 @@ public class CreateAccount extends AppCompatActivity {
         email = findViewById(R.id.email2);
         password = findViewById(R.id.password2);
         confirmPassword = findViewById(R.id.password3); // Confirm password field
-        signupButton = findViewById(R.id.signupbtn); // Corrected to Button
+        signupButton = findViewById(R.id.signupbtn);
         textViewRedirectLogin = findViewById(R.id.textviewr);
 
         // Redirect to Login screen
@@ -54,30 +59,15 @@ public class CreateAccount extends AppCompatActivity {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nameText = name.getText().toString();
-                String emailText = email.getText().toString();
-                String passwordText = password.getText().toString();
-                String confirmPasswordText = confirmPassword.getText().toString();
+                String nameText = name.getText().toString().trim();
+                String emailText = email.getText().toString().trim();
+                String passwordText = password.getText().toString().trim();
+                String confirmPasswordText = confirmPassword.getText().toString().trim();
 
-                // Check for empty fields
-                if (TextUtils.isEmpty(nameText)) {
-                    Toast.makeText(CreateAccount.this, "Enter Username", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(emailText)) {
-                    Toast.makeText(CreateAccount.this, "Enter Email", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(passwordText)) {
-                    Toast.makeText(CreateAccount.this, "Enter Password", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                // Check if passwords match
-                if (!passwordText.equals(confirmPasswordText)) {
-                    Toast.makeText(CreateAccount.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+                // Check for empty fields and password match
+                if (TextUtils.isEmpty(nameText) || TextUtils.isEmpty(emailText) ||
+                        TextUtils.isEmpty(passwordText) || !passwordText.equals(confirmPasswordText)) {
+                    Toast.makeText(CreateAccount.this, "Please check your inputs", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -87,13 +77,35 @@ public class CreateAccount extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(CreateAccount.this, "Account created", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                                    FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                                    if (firebaseUser != null) {
+                                        String userId = firebaseUser.getUid();
+
+                                        Map<String, Object> userData = new HashMap<>();
+                                        userData.put("name", nameText);
+                                        userData.put("email", emailText);
+
+                                        FirebaseDatabase.getInstance().getReference("users")
+                                                .child(userId)
+                                                .setValue(userData)
+                                                .addOnCompleteListener(task1 -> {
+                                                    if (task1.isSuccessful()) {
+                                                        Toast.makeText(CreateAccount.this, "Account created", Toast.LENGTH_SHORT).show();
+                                                        // Redirect to ProfileActivity with user data
+                                                        Intent intent = new Intent(CreateAccount.this, ProfileActivity.class);
+                                                        intent.putExtra("UserName", nameText);
+                                                        intent.putExtra("UserEmail", emailText);
+                                                        startActivity(intent);
+                                                        finish();
+                                                    } else {
+                                                        Toast.makeText(CreateAccount.this, "Failed to store user data", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                    } else {
+                                        Toast.makeText(CreateAccount.this, "Failed to get user data", Toast.LENGTH_SHORT).show();
+                                    }
                                 } else {
-                                    Toast.makeText(CreateAccount.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CreateAccount.this, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });

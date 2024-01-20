@@ -50,6 +50,9 @@ public class WishlistActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_wishlist);
 
+
+        bottom_navigation();
+
             // Initialize components
             wishlistRecyclerView = findViewById(R.id.view3);
             emptyTextView = findViewById(R.id.emptyTxt);
@@ -58,15 +61,18 @@ public class WishlistActivity extends AppCompatActivity {
             // Set up the RecyclerView (Adapter, LayoutManager)
 
             // Set the on click listener for the back button
-            backBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Handle the back button click
-                    onBackPressed();
-                }
-            });
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to the MainActivity
+                Intent mainIntent = new Intent(WishlistActivity.this, MainActivity.class);
+                startActivity(mainIntent);
+                finish(); // This will finish the ProfileActivity, preventing it from staying in the back stack
+            }
+        });
 
-            // Additional logic (e.g., loading wishlist items)
+
+        // Additional logic (e.g., loading wishlist items)
         }
 
     // Additional methods as needed

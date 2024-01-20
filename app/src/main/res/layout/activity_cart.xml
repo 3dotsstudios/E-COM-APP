@@ -271,7 +271,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button"
+                android:id="@+id/orderbtn"
                 style="@android:style/Widget.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -279,7 +279,9 @@
                 android:background="@color/black"
                 android:text="OrderNow"
                 android:textColor="@color/white"
+                android:onClick="onBackClicked"
                 android:textSize="18sp" />
+
         </LinearLayout>
     </ScrollView>
 

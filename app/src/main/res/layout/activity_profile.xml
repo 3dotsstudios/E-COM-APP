@@ -5,12 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- New User Layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:id="@+id/layoutNewUser"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <!-- Contents of the first XML layout -->
+        <!-- Insert all elements from your first XML layout here -->
+        <!-- Example: -->
         <ImageView
             android:id="@+id/backBtn"
             android:layout_width="wrap_content"
@@ -23,6 +31,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.057"
             tools:layout_editor_absoluteX="26dp" />
+        <!-- Add other elements like Buttons, TextViews, etc., from your first XML -->
 
         <Button
             android:id="@+id/signIn"
@@ -30,47 +39,156 @@
             android:layout_height="57dp"
             android:backgroundTint="#9A8841"
             android:text="Sign in"
-            tools:layout_editor_absoluteX="110dp"
-            tools:layout_editor_absoluteY="337dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/signUp"
+            android:layout_width="190dp"
+            android:layout_height="57dp"
+            android:backgroundTint="#9A8841"
+            android:text="Sign up"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.603" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="267dp"
+            android:layout_height="47dp"
+            android:gravity="center"
+            android:text="Hello Guest you are currently not sign in.. Kindly Sign in or Sign up to enjoy our services. "
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="374dp"
+            android:layout_height="449dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="374dp"
-        android:layout_height="449dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.432"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/logo"
-        android:gravity="center"
-        tools:layout_editor_absoluteY="-21dp" />
-
-    <Button
-        android:id="@+id/signUp"
-        android:layout_width="190dp"
-        android:layout_height="57dp"
-        android:text="Sign up"
-        android:backgroundTint="#9A8841"
+    <!-- Logged-in User Layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutLoggedInUser"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.603" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="267dp"
-        android:layout_height="47dp"
-        android:text="Hello Guest you are currently not sign in.. Kindly Sign in or Sign up to enjoy our services. "
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="13sp"
-        android:gravity="center"
+        <!-- Contents of the second XML layout -->
+        <!-- Insert all elements from your second XML layout here -->
+        <!-- Example: -->
 
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4"
-        tools:layout_editor_absoluteX="69dp" />
+        <ImageView
+            android:id="@+id/logoImageView"
+            android:layout_width="439dp"
+            android:layout_height="393dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/logo"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="-61dp" />
+
+        <Button
+            android:id="@+id/logoutbtn"
+            android:layout_width="275dp"
+            android:layout_height="59dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="#9A8841"
+            android:text="Logout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.824" />
+
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="399dp"
+            android:layout_height="381dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <LinearLayout
+                android:layout_width="329dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="293dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+
+                    android:fontFamily="serif"
+                    android:text="User Profile"
+                    android:textColor="#0E0D0D"
+                    android:textSize="40dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="306dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="50dp"
+
+                    android:drawableStart="@drawable/name"
+                    android:hint=" Name"
+                    android:padding="15dp"
+                    android:textColorHint="#6E6C6C"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_width="308dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="15dp"
+                    android:drawableStart="@drawable/email"
+                    android:hint=" Email"
+                    android:padding="15dp"
+                    android:textColorHint="#6E6C6C"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+        <!-- Add other elements like Buttons, TextViews, etc., from your second XML -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
