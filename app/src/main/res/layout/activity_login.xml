@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+
+
+            <LinearLayout
+                android:layout_width="290dp"
+                android:layout_height="509dp"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="serif"
+                    android:text="Welcome\nBack"
+                    android:textColor="#0E0D0D"
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/email2"
+                    android:layout_width="274dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/edittext_background"
+                    android:drawableStart="@drawable/email"
+                    android:hint=" Email"
+                    android:padding="15dp"
+                    android:textColorHint="#6E6C6C" />
+
+                <EditText
+                    android:id="@+id/password2"
+                    android:layout_width="272dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edittext_background"
+                    android:drawableStart="@drawable/password"
+                    android:hint=" password"
+                    android:padding="15dp"
+                    android:textColorHint="#6E6C6C" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="272dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="3dp"
+                    android:gravity="end"
+                    android:text="Forget password?"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+
+                <Button
+                    android:id="@+id/imagebtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="46dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="13dp"
+                    android:background="@drawable/btn_background"
+                    android:text="Login" />
+
+                <TextView
+                    android:id="@+id/textviewl"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:text="Are you new user? Register"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
