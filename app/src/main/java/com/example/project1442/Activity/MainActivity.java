@@ -1,30 +1,44 @@
 package com.example.project1442.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.project1442.Adapter.PopularListAdapter;
 import com.example.project1442.Domain.PopularDomain;
 import com.example.project1442.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapterPupolar;
     private RecyclerView recyclerViewPupolar;
+    private TextView userTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        userTextView = findViewById(R.id.textView2);
+        initUser();
         initRecyclerview();
         bottom_navigation();
 
@@ -50,6 +64,33 @@ public class MainActivity extends AppCompatActivity {
         perfumeImage.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, PerfumeActivity.class)));
         walletImage.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, WalletActivity.class)));
         allCatImage.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ViewAllActivity.class)));
+    }
+
+    private void initUser() {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            DatabaseReference userNameRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("name");
+
+            userNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        String userName = dataSnapshot.getValue(String.class);
+                        runOnUiThread(() -> userTextView.setText(userName));
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.e("MainActivity", "Failed to read user name.", databaseError.toException());
+                    runOnUiThread(() -> Toast.makeText(MainActivity.this, "Failed to load user data.", Toast.LENGTH_SHORT).show());
+                }
+            });
+        } else {
+            userTextView.setText("GUEST");
+        }
     }
 
     private void initRecyclerview() {
