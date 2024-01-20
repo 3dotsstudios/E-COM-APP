@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.project1442.Adapter.PopularListAdapter;
@@ -32,9 +33,13 @@ public class MainActivity extends AppCompatActivity {
     private void bottom_navigation() {
         LinearLayout homeBtn = findViewById(R.id.homeBtn);
         LinearLayout cartBtn = findViewById(R.id.cartBtn);
+        ImageView sandalImage = findViewById(R.id.sandalImage);
+        ImageView perfumeImage = findViewById(R.id.perfumeImage);
 
         homeBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, MainActivity.class)));
         cartBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, CartActivity.class)));
+        sandalImage.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, SandalsActivity.class)));
+        perfumeImage.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, PerfumeActivity.class)));
     }
 
     private void initRecyclerview() {

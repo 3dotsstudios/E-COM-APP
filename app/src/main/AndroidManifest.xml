@@ -18,6 +18,13 @@
         <activity
             android:name=".Activity.DetailActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".Activity.SandalsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.PerfumeActivity"
+            android:exported="false" />
         <activity
             android:name=".Activity.MainActivity"
             android:exported="true">

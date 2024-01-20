@@ -184,7 +184,7 @@
                         android:background="@drawable/btn_cat_background">
 
                         <ImageView
-                            android:id="@+id/imageView4"
+                            android:id="@+id/sandalImage"
                             android:layout_width="59dp"
                             android:layout_height="60dp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -217,7 +217,7 @@
                         android:background="@drawable/btn_cat_background">
 
                         <ImageView
-                            android:id="@+id/imageView4"
+                            android:id="@+id/perfumeImage"
                             android:layout_width="44dp"
                             android:layout_height="48dp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -252,7 +252,7 @@
                         android:background="@drawable/btn_cat_background">
 
                         <ImageView
-                            android:id="@+id/imageView4"
+                            android:id="@+id/walletImage"
                             android:layout_width="62dp"
                             android:layout_height="49dp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -286,7 +286,7 @@
                         android:background="@drawable/btn_cat_background">
 
                         <ImageView
-                            android:id="@+id/imageView4"
+                            android:id="@+id/allCatImage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:layout_constraintBottom_toBottomOf="parent"
