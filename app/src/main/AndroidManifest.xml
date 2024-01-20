@@ -34,6 +34,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.ProfileActivity" />
+
+
+        <activity android:name=".Activity.WalletActivity" />
+
+        <activity android:name=".Activity.ViewAllActivity" />
+
+        <activity android:name=".Activity.WishlistActivity" />
+
+
     </application>
 
 </manifest>
