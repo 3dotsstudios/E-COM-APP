@@ -28,6 +28,8 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="autoMirrored" value="true" />
+                            <entry key="color" value="ff0000" />
                             <entry key="outputName" value="ic_heart_outline" />
                           </map>
                         </option>

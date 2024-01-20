@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,7 +28,24 @@ public class SandalsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sandal_page);
         initRecyclerview();
+
+        bottom_navigation();
+
+
     }
+
+    private void bottom_navigation() {
+        LinearLayout homeBtn = findViewById(R.id.homeBtn);
+        LinearLayout cartBtn = findViewById(R.id.cartBtn);
+        LinearLayout wishlistBtn = findViewById(R.id.wishlistBtn);
+        LinearLayout profileBtn = findViewById(R.id.profileBtn);
+
+        homeBtn.setOnClickListener(v -> startActivity(new Intent(SandalsActivity.this, MainActivity.class)));
+        cartBtn.setOnClickListener(v -> startActivity(new Intent(SandalsActivity.this, CartActivity.class)));
+        wishlistBtn.setOnClickListener(v -> startActivity(new Intent(SandalsActivity.this, WishlistActivity.class)));
+        profileBtn.setOnClickListener(v -> startActivity(new Intent(SandalsActivity.this, ProfileActivity.class)));
+    }
+
 
     private void initRecyclerview() {
         ArrayList<PopularDomain> items = new ArrayList<>();
@@ -53,7 +71,7 @@ public class SandalsActivity extends AppCompatActivity {
 
 
         recyclerViewPupolar = findViewById(R.id.view1);
-        recyclerViewPupolar.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewPupolar.setLayoutManager(new GridLayoutManager(this, 2));
 
         adapterPupolar = new PopularListAdapter(items);
         recyclerViewPupolar.setAdapter(adapterPupolar);

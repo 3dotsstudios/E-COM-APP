@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,8 +20,6 @@ import java.util.ArrayList;
 
 public class PerfumeActivity extends AppCompatActivity {
 
-    public class SandalsActivity extends AppCompatActivity {
-
         private RecyclerView.Adapter adapterPupolar;
         private RecyclerView recyclerViewPupolar;
 
@@ -27,10 +28,24 @@ public class PerfumeActivity extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.sandal_page);
+            setContentView(R.layout.perfume_page);
             initRecyclerview();
+            bottom_navigation();
+
+
         }
 
+    private void bottom_navigation() {
+        LinearLayout homeBtn = findViewById(R.id.homeBtn);
+        LinearLayout cartBtn = findViewById(R.id.cartBtn);
+        LinearLayout wishlistBtn = findViewById(R.id.wishlistBtn);
+        LinearLayout profileBtn = findViewById(R.id.profileBtn);
+
+        homeBtn.setOnClickListener(v -> startActivity(new Intent(PerfumeActivity.this, MainActivity.class)));
+        cartBtn.setOnClickListener(v -> startActivity(new Intent(PerfumeActivity.this, CartActivity.class)));
+        wishlistBtn.setOnClickListener(v -> startActivity(new Intent(PerfumeActivity.this, WishlistActivity.class)));
+        profileBtn.setOnClickListener(v -> startActivity(new Intent(PerfumeActivity.this, ProfileActivity.class)));
+    }
         private void initRecyclerview() {
             ArrayList<PopularDomain> items = new ArrayList<>();
             items.add(new PopularDomain("Peninsula Leather Sandals", "These Peninsula sandals from Private Collection are an open-toe style, inspired by the traditional Arabic sandal. Made from leather, they're made complete with a smooth leather lining for a comfortable stride while the durable platform sole offers a subtle lift.\n" +
@@ -55,7 +70,7 @@ public class PerfumeActivity extends AppCompatActivity {
 
 
             recyclerViewPupolar = findViewById(R.id.view1);
-            recyclerViewPupolar.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+            recyclerViewPupolar.setLayoutManager(new GridLayoutManager(this, 2));
 
             adapterPupolar = new PopularListAdapter(items);
             recyclerViewPupolar.setAdapter(adapterPupolar);
@@ -64,4 +79,3 @@ public class PerfumeActivity extends AppCompatActivity {
         }
     }
 
-}
