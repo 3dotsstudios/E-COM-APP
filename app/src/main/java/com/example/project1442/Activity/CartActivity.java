@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -20,6 +22,9 @@ import com.example.project1442.Adapter.CartListAdapter;
 import com.example.project1442.Helper.ChangeNumberItemsListener;
 import com.example.project1442.Helper.ManagmentCart;
 import com.example.project1442.R;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class CartActivity extends AppCompatActivity {
 
@@ -34,12 +39,15 @@ public class CartActivity extends AppCompatActivity {
     private Spinner paymentMethodSpinner;
     private GestureDetector gestureDetector;
 
+    private FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
         managmentCart = new ManagmentCart(this);
+        firebaseAuth = FirebaseAuth.getInstance();
 
         initView();
         setupPaymentMethodSpinner();
@@ -58,6 +66,23 @@ public class CartActivity extends AppCompatActivity {
                     return true;
                 }
                 return false;
+            }
+        });
+
+        // Initialize the Order Now button
+        Button orderBtn = findViewById(R.id.orderbtn);
+        orderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Check if the user is authenticated
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // User is logged in, navigate to PaymentDetailsActivity
+                    startActivity(new Intent(CartActivity.this, PaymentDetailsActivity.class));
+                } else {
+                    // User is not logged in, navigate to ProfileActivity (or your login/registration activity)
+                    startActivity(new Intent(CartActivity.this, ProfileActivity.class));
+                }
             }
         });
     }
@@ -128,7 +153,7 @@ public class CartActivity extends AppCompatActivity {
 
     private void setVariable() {
         backBtn = findViewById(R.id.backBtn);
-        backBtn.setOnClickListener(v -> finish()); // Listener for the back button
+        backBtn.setOnClickListener(v -> startActivity(new Intent(CartActivity.this, MainActivity.class)));
     }
 
     private void initView() {

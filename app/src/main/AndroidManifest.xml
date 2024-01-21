@@ -36,12 +36,23 @@
         </activity>
         <activity android:name=".Activity.ProfileActivity" />
 
+        <activity android:name=".Activity.CreateAccount" />
+
+        <activity android:name=".Activity.Login" />
 
         <activity android:name=".Activity.WalletActivity" />
 
         <activity android:name=".Activity.ViewAllActivity" />
 
         <activity android:name=".Activity.WishlistActivity" />
+
+        <activity android:name=".Activity.ForgotPasswordActivity" />
+
+        <activity android:name=".Activity.PaymentDetailsActivity" />
+
+
+
+
 
 
     </application>
