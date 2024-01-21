@@ -58,16 +58,17 @@ public class SandalsActivity extends AppCompatActivity {
                 "Colour: Brown\n" +
                 "Designer: Private Collection\n" +
                 "Material: Leather", "pic1", 15, 4, 500));
-        items.add(new PopularDomain("Creed Perfume", "Discover the luxury of Creed Perfume, a blend of top notes, florals, and spices that embody sophistication and elegance. Ideal for those who value style and grace, it's not just a fragrance but a statement of refinement for any occasion.\n"+
+        items.add(new PopularDomain("FERRAGAMO\n" +
+                "Murray Sandals", "Turn heads with these Murray sandals from Salvatore Ferragamo, which come with an open-toe silhouette and embossed leather craftsmanship. Style them with a white kandora for a traditional look.\n" +
                 "\n" +
-                "Product detail:\n" +
-                "SKU: CRPFL2177N-WHT\n" +
+                "prdct detail:\n" +
+                "SKU: 020769-754404\n" +
                 "Quantity: IS IN STOCK\n" +
-                "Made in: France\n" +
-                "Fragrance: Floral Spice B\n" +
-                "Producer: Creed\n" +
-                "Ingredients: Top notes of exotic spices, a heart of floral essences, and a base of rose oil",
-                "pic1", 10, 4.5, 450));
+                "Made in: Italy\n" +
+                "Colour: White\n" +
+                "Designer: Ferragamo\n" +
+                "Material: Leather",
+                "pic4", 10, 4.5, 450));
 
 
         recyclerViewPupolar = findViewById(R.id.view1);

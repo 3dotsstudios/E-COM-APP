@@ -48,15 +48,18 @@ public class PerfumeActivity extends AppCompatActivity {
     }
         private void initRecyclerview() {
             ArrayList<PopularDomain> items = new ArrayList<>();
-            items.add(new PopularDomain("Peninsula Leather Sandals", "These Peninsula sandals from Private Collection are an open-toe style, inspired by the traditional Arabic sandal. Made from leather, they're made complete with a smooth leather lining for a comfortable stride while the durable platform sole offers a subtle lift.\n" +
+            items.add(new PopularDomain(" Maison Francis Kurkdjian\n" +
+                    "Baccarat Rouge 540 Extrait 70ml", "This Baccarat Rouge 540 Extrait de Parfum by Maison Francis Kurkdjian is formulated with a blend of Egyptian jasmine grandiflorum, saffron, Moroccan bitter almond notes, and is enhanced with cedar, musky wood, ambergris accords.\n" +
                     "\n" +
                     "Product detail:\n" +
-                    "SKU: LMBML2177N-WHT\n" +
+                    "SKU: CRPFL2177N-WHT\n" +
                     "Quantity: IS IN STOCK\n" +
-                    "Made in: Italy\n" +
-                    "Colour: Brown\n" +
-                    "Designer: Private Collection\n" +
-                    "Material: Leather", "pic2", 15, 4, 500));
+                    "Made in: Egypt\n" +
+                    "Fragrance: Grandiflorum\n" +
+                    "Producer: Francis Kurkdjian\n" +
+                    "Ingredients: Egyptian jasmine grandiflorum, saffron, Moroccan bitter almond notes, cedar, musky wood, ambergris accords.",
+                    "pic6", 10, 4.5, 1650));
+
             items.add(new PopularDomain("Creed Perfume", "Discover the luxury of Creed Perfume, a blend of top notes, florals, and spices that embody sophistication and elegance. Ideal for those who value style and grace, it's not just a fragrance but a statement of refinement for any occasion.\n"+
                     "\n" +
                     "Product detail:\n" +
