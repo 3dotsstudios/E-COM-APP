@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.project1442.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,13 +33,11 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile); // Set the layout for this activity
+        setContentView(R.layout.activity_profile);
 
-        // Initialize Firebase Auth and Database
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        // Initialize the views
         backBtn = findViewById(R.id.backBtn);
         signInBtn = findViewById(R.id.signIn);
         signUpBtn = findViewById(R.id.signUp);
@@ -47,71 +46,47 @@ public class ProfileActivity extends AppCompatActivity {
         emailTextView = findViewById(R.id.email);
         logoutBtn = findViewById(R.id.logoutbtn);
 
-        Intent intent = getIntent();
-        if (intent != null && intent.hasExtra("UserName") && intent.hasExtra("UserEmail")) {
-            String name = intent.getStringExtra("UserName");
-            String email = intent.getStringExtra("UserEmail");
+        logoutBtn.setOnClickListener(v -> {
+            mAuth.signOut();
+            Intent mainIntent = new Intent(ProfileActivity.this, MainActivity.class);
+            startActivity(mainIntent);
+            finish();
+        });
 
-            nameTextView.setText(name);
-            emailTextView.setText(email);
-        } else {
-            loadUserProfile(); // Load user profile from Firebase
-        }
+        backBtn.setOnClickListener(v -> {
+            Intent mainIntent = new Intent(ProfileActivity.this, MainActivity.class);
+            startActivity(mainIntent);
+            finish();
+        });
 
-        // Determine the user's login status and set layout visibility
+        signInBtn.setOnClickListener(v -> {
+            Intent signInIntent = new Intent(ProfileActivity.this, Login.class);
+            startActivity(signInIntent);
+        });
+
+        signUpBtn.setOnClickListener(v -> {
+            Intent signUpIntent = new Intent(ProfileActivity.this, CreateAccount.class);
+            startActivity(signUpIntent);
+        });
+
+        updateUIBasedOnLoginStatus();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateUIBasedOnLoginStatus();
+    }
+
+    private void updateUIBasedOnLoginStatus() {
         if (isLoggedIn()) {
             findViewById(R.id.layoutNewUser).setVisibility(View.GONE);
             findViewById(R.id.layoutLoggedInUser).setVisibility(View.VISIBLE);
-            loadUserProfile(); // Load user profile if logged in
+            loadUserProfile();
         } else {
             findViewById(R.id.layoutNewUser).setVisibility(View.VISIBLE);
             findViewById(R.id.layoutLoggedInUser).setVisibility(View.GONE);
         }
-
-        // Set onClickListener for the logout button
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Sign out from Firebase
-                mAuth.signOut();
-
-                // Redirect to MainActivity
-                Intent mainIntent = new Intent(ProfileActivity.this, MainActivity.class);
-                startActivity(mainIntent);
-                finish(); // Ensure this activity is removed from the back stack
-            }
-        });
-
-        // Set onClickListener for the back button
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to the MainActivity
-                Intent mainIntent = new Intent(ProfileActivity.this, MainActivity.class);
-                startActivity(mainIntent);
-                finish(); // This will finish the ProfileActivity
-            }
-        });
-
-        // Set onClickListener for the sign in button
-        signInBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to the Login activity
-                Intent signInIntent = new Intent(ProfileActivity.this, Login.class);
-                startActivity(signInIntent);
-            }
-        });
-
-        // Set onClickListener for the sign up button
-        signUpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to the CreateAccount activity
-                Intent signUpIntent = new Intent(ProfileActivity.this, CreateAccount.class);
-                startActivity(signUpIntent);
-            }
-        });
     }
 
     private boolean isLoggedIn() {
@@ -138,7 +113,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-                    // Handle errors
+                    Toast.makeText(ProfileActivity.this, "Error loading profile.", Toast.LENGTH_SHORT).show();
                 }
             });
         }

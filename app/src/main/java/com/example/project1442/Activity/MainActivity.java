@@ -38,10 +38,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         userTextView = findViewById(R.id.textView2);
-        initUser();
+        retrieveUserData();
         initRecyclerview();
         bottom_navigation();
-
     }
 
     private void bottom_navigation() {
@@ -54,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
         ImageView walletImage = findViewById(R.id.walletImage);
         ImageView allCatImage = findViewById(R.id.allCatImage);
 
-
-
         homeBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, MainActivity.class)));
         cartBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, CartActivity.class)));
         wishlistBtn.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, WishlistActivity.class)));
@@ -66,26 +63,28 @@ public class MainActivity extends AppCompatActivity {
         allCatImage.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ViewAllActivity.class)));
     }
 
-    private void initUser() {
+    private void retrieveUserData() {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
         if (currentUser != null) {
             String userId = currentUser.getUid();
-            DatabaseReference userNameRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("name");
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
 
-            userNameRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        String userName = dataSnapshot.getValue(String.class);
-                        runOnUiThread(() -> userTextView.setText(userName));
+                        String userName = dataSnapshot.child("name").getValue(String.class);
+                        userTextView.setText(userName);
+                    } else {
+                        userTextView.setText("GUEST");
                     }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Log.e("MainActivity", "Failed to read user name.", databaseError.toException());
-                    runOnUiThread(() -> Toast.makeText(MainActivity.this, "Failed to load user data.", Toast.LENGTH_SHORT).show());
+                    Log.e("MainActivity", "Failed to read user data.", databaseError.toException());
+                    Toast.makeText(MainActivity.this, "Failed to load user data.", Toast.LENGTH_SHORT).show();
                 }
             });
         } else {
@@ -95,6 +94,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRecyclerview() {
         ArrayList<PopularDomain> items = new ArrayList<>();
+        // Add your items here
+        // Example:
+        // items.add(new PopularDomain("Item Name", "Item Description", "image_url", 0, 0, 0));
+
         items.add(new PopularDomain("Peninsula Leather Sandals", "These Peninsula sandals from Private Collection are an open-toe style, inspired by the traditional Arabic sandal. Made from leather, they're made complete with a smooth leather lining for a comfortable stride while the durable platform sole offers a subtle lift.\n" +
                 "\n" +
                 "Product detail:\n" +
@@ -128,11 +131,10 @@ public class MainActivity extends AppCompatActivity {
                 "Dimension: 11cm x 9.3cm x 1.5cm\n" +
                 "Material: Fabric\n"
 
-               , "pic3", 13, 4.2, 1500));
+                , "pic3", 13, 4.2, 1500));
 
         recyclerViewPupolar = findViewById(R.id.view1);
         recyclerViewPupolar.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
         adapterPupolar = new PopularListAdapter(items);
         recyclerViewPupolar.setAdapter(adapterPupolar);
     }

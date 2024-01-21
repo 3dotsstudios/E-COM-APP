@@ -92,7 +92,7 @@ public class CreateAccount extends AppCompatActivity {
                                                     if (task1.isSuccessful()) {
                                                         Toast.makeText(CreateAccount.this, "Account created", Toast.LENGTH_SHORT).show();
                                                         // Redirect to ProfileActivity with user data
-                                                        Intent intent = new Intent(CreateAccount.this, ProfileActivity.class);
+                                                        Intent intent = new Intent(CreateAccount.this, Login.class);
                                                         intent.putExtra("UserName", nameText);
                                                         intent.putExtra("UserEmail", emailText);
                                                         startActivity(intent);
